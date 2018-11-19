@@ -39,3 +39,30 @@ function postData(url, data) {
     xhr.send(data);
 }
 postData(data, 'www.testUrl.com');
+
+// Event and Error handling
+var xhr = new XMLHttpRequest();
+xhr.addEventListener('progress', checkProgress); //fires when the readyState changes.
+xhr.addEventListener('abort', abortMessage); // fires when the request is aborted.
+xhr.addEventListener('error', errorMessage); // fires when an error occurs
+xhr.addEventListener('load', handleRequest); // fires only when the request is successfull and data is sent back to the browser.
+function handleRequest() {
+    console.log(xhr.responseText);
+}
+
+function checkProgress(progress) {
+    // e.g. (3/4) * 100 = 75%. *almost complete*. - can use for good ux
+    var percentage = (progress.loaded / progress.total) * 100;
+    console.log(percentage);
+}
+
+function errorMessage() {
+    console.log('sorry there was an error, please try again');
+}
+
+function abortMessage() {
+    console.log('sorry, this request was aborted');
+}
+// third parameter is Async, 'true' by default
+xhr.open('GET', url, true);
+xhr.send();
