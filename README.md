@@ -1,2 +1,2 @@
 # XMLHttpRequest-boilerplate
-simple examples of XMLHttpRequest functions
+Examples of GET, POST, Event and Error handling functions for the XMLHttpRequest API
